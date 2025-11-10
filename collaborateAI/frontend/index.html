@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<base href="https://kd6cg5na73xwm.ok.kimi.link">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cross-Departmental Collaboration Platform</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Custom Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <!-- Core Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.4.3/echarts.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.19.0/matter.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.2/socket.io.js"></script>
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Particle Canvas -->
+    <canvas id="particleCanvas"></canvas>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="flex items-center justify-between py-4">
+                <div class="flex items-center space-x-2">
+                    <div class="w-8 h-8 bg-gradient-to-br from-sage-green to-muted-teal rounded-lg flex items-center justify-center">
+                        <span class="text-white font-bold text-sm">AI</span>
+                    </div>
+                    <span class="font-display font-semibold text-xl text-sage-green">CollaborateAI</span>
+                </div>
+
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#features" class="nav-link text-warm-charcoal hover:text-copper-orange">Features</a>
+                    <a href="dashboard.html" class="nav-link text-warm-charcoal hover:text-copper-orange">Dashboard</a>
+                    <a href="projects.html" class="nav-link text-warm-charcoal hover:text-copper-orange">Projects</a>
+                    <a href="resources.html" class="nav-link text-warm-charcoal hover:text-copper-orange">Resources</a>
+                </div>
+
+                <div class="flex items-center space-x-4">
+                    <div id="connectionStatus" class="status-indicator disconnected">Disconnected</div>
+                    <a href="dashboard.html" class="btn btn-primary">Get Started</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-background"></div>
+        <div class="floating-elements">
+            <div class="floating-element"></div>
+            <div class="floating-element"></div>
+            <div class="floating-element"></div>
+        </div>
+
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1 class="hero-title font-display">
+                    Intelligent Cross-Departmental Collaboration
+                </h1>
+                <p class="hero-subtitle">
+                    Harness the power of AI agents to streamline communication, optimize resource allocation, 
+                    and enhance collaboration across academic departments. Built with CrewAI and LangChain 
+                    for intelligent automation.
+                </p>
+                <div class="flex flex-wrap gap-4">
+                    <a href="dashboard.html" class="btn btn-primary btn-large">
+                        Start Collaborating
+                        <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+                        </svg>
+                    </a>
+                    <a href="#features" class="btn btn-secondary btn-large">
+                        Learn More
+                    </a>
+                </div>
+            </div>
+
+            <div class="hero-visual">
+                <img src="resources/hero-collaboration.png" alt="AI-Powered Collaboration" class="hero-image">
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="feature-section scroll-reveal">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title font-display">Platform Features</h2>
+                <p class="section-subtitle">
+                    Comprehensive tools powered by AI agents to transform academic collaboration
+                </p>
+            </div>
+
+            <div class="feature-grid">
+                <div class="feature-card scroll-reveal">
+                    <div class="feature-icon">🤖</div>
+                    <h3 class="feature-title">AI Agent Orchestration</h3>
+                    <p class="feature-description">
+                        Intelligent agents powered by CrewAI manage projects, coordinate departments, 
+                        and optimize resources automatically. Each agent specializes in different 
+                        aspects of academic collaboration.
+                    </p>
+                </div>
+
+                <div class="feature-card scroll-reveal">
+                    <div class="feature-icon">💬</div>
+                    <h3 class="feature-title">Smart Communication</h3>
+                    <p class="feature-description">
+                        LangChain-powered natural language processing enhances communication between 
+                        departments, translates technical terminology, and generates comprehensive 
+                        meeting agendas and project descriptions.
+                    </p>
+                </div>
+
+                <div class="feature-card scroll-reveal">
+                    <div class="feature-icon">📊</div>
+                    <h3 class="feature-title">Resource Optimization</h3>
+                    <p class="feature-description">
+                        AI-driven resource allocation system analyzes availability, requirements, 
+                        and constraints across departments to suggest optimal resource distribution 
+                        and booking schedules.
+                    </p>
+                </div>
+
+                <div class="feature-card scroll-reveal">
+                    <div class="feature-icon">📈</div>
+                    <h3 class="feature-title">Real-time Analytics</h3>
+                    <p class="feature-description">
+                        Comprehensive dashboard showing collaboration metrics, project progress, 
+                        agent performance, and resource utilization with interactive visualizations 
+                        and predictive insights.
+                    </p>
+                </div>
+
+                <div class="feature-card scroll-reveal">
+                    <div class="feature-icon">🔧</div>
+                    <h3 class="feature-title">Automated Workflows</h3>
+                    <p class="feature-description">
+                        Customizable automation rules handle routine tasks, notifications, and 
+                        project milestones. Set up triggers and conditions to streamline 
+                        repetitive collaboration processes.
+                    </p>
+                </div>
+
+                <div class="feature-card scroll-reveal">
+                    <div class="feature-icon">🌐</div>
+                    <h3 class="feature-title">Cross-Platform Integration</h3>
+                    <p class="feature-description">
+                        Seamlessly integrate with existing academic systems, calendars, and 
+                        communication tools. WebSocket-based real-time updates keep all 
+                        stakeholders synchronized.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Agents Preview -->
+    <section class="feature-section scroll-reveal">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title font-display">AI Agents at Work</h2>
+                <p class="section-subtitle">
+                    Meet your intelligent collaboration partners, each specialized for different tasks
+                </p>
+            </div>
+
+            <div class="agent-preview">
+                <div class="agent-grid" id="agentGrid">
+                    <!-- Agent cards will be populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Statistics -->
+    <section class="feature-section scroll-reveal">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title font-display">Platform Impact</h2>
+                <p class="section-subtitle">
+                    Real metrics from academic institutions using our platform
+                </p>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card scroll-reveal">
+                    <div class="stat-number">85%</div>
+                    <div class="stat-label">Faster Project Initiation</div>
+                </div>
+
+                <div class="stat-card scroll-reveal">
+                    <div class="stat-number">3.2x</div>
+                    <div class="stat-label">Increased Collaboration</div>
+                </div>
+
+                <div class="stat-card scroll-reveal">
+                    <div class="stat-number">92%</div>
+                    <div class="stat-label">Resource Utilization</div>
+                </div>
+
+                <div class="stat-card scroll-reveal">
+                    <div class="stat-number">78%</div>
+                    <div class="stat-label">Reduced Admin Overhead</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="cta-section scroll-reveal">
+        <div class="container">
+            <h2 class="cta-title font-display">Ready to Transform Your Collaboration?</h2>
+            <p class="cta-subtitle">
+                Join leading academic institutions in revolutionizing cross-departmental collaboration
+            </p>
+            <div class="cta-buttons">
+                <a href="dashboard.html" class="btn btn-large" style="background: white; color: var(--sage-green);">
+                    Start Your Free Trial
+                </a>
+                <a href="projects.html" class="btn btn-secondary btn-large">
+                    View Demo Projects
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 CollaborateAI. Empowering academic collaboration through intelligent automation.</p>
+        </div>
+    </footer>
+
+    <!-- Load Main JavaScript -->
+    <script src="main.js"></script>
+</body>
+</html>
